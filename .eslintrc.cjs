@@ -26,10 +26,7 @@ module.exports = {
   ],
   plugins: ["react", "react-hooks"],
   rules: {
-    // React 17+ (no need to import React)
     "react/react-in-jsx-scope": "off",
-
-    // Common sane defaults
     "react/prop-types": "off",
     "no-unused-vars": ["warn", { argsIgnorePattern: "^_" }],
     "import/order": [
@@ -41,4 +38,3 @@ module.exports = {
     ],
   },
 };
- v
