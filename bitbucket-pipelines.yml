@@ -17,7 +17,7 @@ pipelines:
           caches:
             - node
           script:
-            - npm ci
+            - npm ci --legacy-peer-deps
             - npm run lint
       - step:
           name: 'Security scan'
