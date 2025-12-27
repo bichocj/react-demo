@@ -14,8 +14,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "npx eslint . --ext .js,.jsx",
-    "lint:fix": "npx eslint . --ext .js,.jsx --fix"
+    "lint": "eslint --output-file reports/eslint-report.json --format json \"src/**/*.{ts,tsx,js,jsx}\"",
+    "lint:summary": "eslint -f summary src",
+    "lint:fix": "eslint src --fix"
   },
   "eslintConfig": {
     "extends": [
@@ -36,15 +37,19 @@
     ]
   },
   "devDependencies": {
+    "@eslint/js": "^9.39.2",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.1",
-    "eslint": "^8.57.1",
-    "eslint-plugin-import": "^2.32.0",
-    "eslint-plugin-jest": "^29.11.0",
-    "eslint-plugin-jsx-a11y": "^6.10.2",
-    "eslint-plugin-react": "^7.37.5",
-    "eslint-plugin-react-hooks": "^7.0.1",
+    "eslint": "^9.0.0",
+    "eslint-config-prettier": "^10.0.0",
+    "eslint-formatter-summary": "^2.0.2",
+    "eslint-import-resolver-typescript": "^4.4.4",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-jest": "^29.0.0",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-react": "^7.28.0",
+    "eslint-plugin-react-hooks": "^7.0.0",
     "jest": "^30.2.0"
   }
 }
