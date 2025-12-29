@@ -77,8 +77,8 @@ pipelines:
   branches:
     feature/*:
       - step:
-          name: Sandbox (preview)
-          deployment: sandbox
+          name: Staging (preview)
+          deployment: staging
           script:
             - yarn install --frozen-lockfile
             - export REACT_APP_ENV=sandbox
