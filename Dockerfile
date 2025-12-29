@@ -9,9 +9,17 @@ LABEL fly_launch_runtime="Node.js"
 # Node.js app lives here
 WORKDIR /app
 
+
 # Set production environment
 ENV NODE_ENV="production"
 ARG YARN_VERSION=1.22.22
+
+ARG REACT_APP_SERVER
+ENV REACT_APP_SERVER=$REACT_APP_SERVER
+
+ARG REACT_APP_ENV
+ENV REACT_APP_ENV=$REACT_APP_ENV
+
 RUN npm install -g yarn@$YARN_VERSION --force
 
 
