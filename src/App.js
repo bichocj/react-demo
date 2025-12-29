@@ -2,6 +2,9 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  const appServer = process.env.REACT_APP_SERVER;
+  const appEnv = process.env.REACT_APP_ENV;
+
   return (
     <div className="App">
       <header className="App-header">
@@ -15,7 +18,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React with bicho!
+          Learn React with bicho! - {appServer} - {appEnv}
         </a>
       </header>
     </div>
