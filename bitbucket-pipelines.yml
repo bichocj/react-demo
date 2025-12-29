@@ -3,13 +3,13 @@ image: 'node:22-bullseye'
 pipelines:
   default:
     - parallel:
-      - step:
+      - step: &install
           name: 'Install'
           script:
             - apt-get update
             - apt-get install cmake --yes
             - npm install
-      - step:
+      - step: &lint
           name: 'Lint'
           caches:
             - node
