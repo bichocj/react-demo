@@ -7,6 +7,9 @@ app = 'demo-super-app'
 primary_region = 'iad'
 
 [build]
+[build.args]
+  REACT_APP_SERVER = ""
+  REACT_APP_ENV = ""
 
 [http_service]
   internal_port = 3000
