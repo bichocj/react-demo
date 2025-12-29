@@ -6,23 +6,48 @@ clone:
 definitions:
   caches:
     yarn: '/usr/local/share/.cache/yarn'
-
-pipelines:
-  default:
-    - step:
+  
+  steps:
+    - step: &install
         name: Install
         caches:
           - yarn
-        script:
-          - yarn install --frozen-lockfile
         artifacts:
           - node_modules/**
+        script:
+#          - |
+#            if [[ -n "$BITBUCKET_PR_ID" ]]; then
+#              export HOST_NAME="${BITBUCKET_REPO_SLUG}-${BITBUCKET_COMMIT}";
+#              export TEST_GRAPHQL=http://${HOST_NAME}.sbx.airtm.com:6222/.well-known/health
+#              echo "HOST_NAME=$HOST_NAME"
+#              echo "TEST_GRAPHQL=$TEST_GRAPHQL"
+#              curl_output=`curl --silent ${TEST_GRAPHQL} || true`
+#              echo "curl_output=$curl_output"
+#              if echo -n $curl_output | grep '"name":'; then
+#                export GRAPHQL_ENDPOINT=http://${HOST_NAME}.sbx.airtm.com:6222/graphql
+#                echo "Found running sandbox at $GRAPHQL_ENDPOINT"
+#              else
+#                echo "Did not find running sandbox"
+#              fi
+#            fi
+          - apt-get update
+          - apt-get install cmake --yes
+          - yarn install --frozen-lockfile
 
-    - step:
+    - step: &lint
         name: Lint
+        artifacts:
+          - reports/*
         script:
           - yarn lint
 
+pipelines:
+  default:
+    - step: *install
+    - parallel:
+          - step: *lint    
+
+    
     - step:
         name: Security scan
         script:
