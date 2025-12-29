@@ -74,3 +74,12 @@ pipelines:
         trigger: manual
         script:
           - echo "Your deployment to production script goes here..."
+  branches:
+    feature/*:
+      - step:
+          name: Sandbox (preview)
+          deployment: sandbox
+          script:
+            - yarn install --frozen-lockfile
+            - export REACT_APP_ENV=sandbox
+            - yarn sandbox

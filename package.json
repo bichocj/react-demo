@@ -16,7 +16,8 @@
     "eject": "react-scripts eject",
     "lint": "eslint --output-file reports/eslint-report.json --format json \"src/**/*.{ts,tsx,js,jsx}\"",
     "lint:summary": "eslint -f summary src",
-    "lint:fix": "eslint src --fix"
+    "lint:fix": "eslint src --fix",
+    "sandbox": "react-scripts start"
   },
   "eslintConfig": {
     "extends": [
