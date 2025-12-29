@@ -1,21 +1,24 @@
 image: node:22-bullseye
 
+clone:
+  depth: 1
+
 definitions:
   caches:
     yarn: '/usr/local/share/.cache/yarn'
-
 pipelines:
   default:
-    - step: &install
-        name: Install
-        caches:
-          - node
-        artifacts:
-          - node_modules/**
-    - step: &lint
+    - step:
+      name: Install
+      caches:
+        - yarn
+      script:
+        - yarn install --frozen-lockfile
+      artifacts:
+        - node_modules/**
+
+    - step:
         name: Lint
-        artifacts:
-          - reports/*
         script:
           - yarn lint
 
