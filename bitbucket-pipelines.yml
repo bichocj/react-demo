@@ -1,29 +1,38 @@
-image: 'node:22-bullseye'
+image: node:22-bullseye
+
+definitions:
+  caches:
+    yarn: '/usr/local/share/.cache/yarn'
 
 pipelines:
   default:
-    - step:
-        name: Install & Lint
+    - step: &install
+        name: Install
         caches:
           - node
+        artifacts:
+          - node_modules/**
+    - step: &lint
+        name: Lint
+        artifacts:
+          - reports/*
         script:
-          - npm install
-          - npm run lint
+          - yarn lint
 
     - step:
-        name: 'Security scan'
+        name: Security scan
         script:
           - echo "Your security scan goes here..."
 
     - step:
-        name: 'Deployment to Staging'
+        name: Deployment to Staging
         deployment: staging
         script:
-          - echo "Deploy staging"
+          - echo "Your deployment to staging script goes here..."
 
     - step:
-        name: 'Deployment to Production'
+        name: Deployment to Production
         deployment: production
         trigger: manual
         script:
-          - echo "Deploy production"
+          - echo "Your deployment to production script goes here..."
