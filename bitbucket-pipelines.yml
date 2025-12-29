@@ -6,16 +6,17 @@ clone:
 definitions:
   caches:
     yarn: '/usr/local/share/.cache/yarn'
+
 pipelines:
   default:
     - step:
-      name: Install
-      caches:
-        - yarn
-      script:
-        - yarn install --frozen-lockfile
-      artifacts:
-        - node_modules/**
+        name: Install
+        caches:
+          - yarn
+        script:
+          - yarn install --frozen-lockfile
+        artifacts:
+          - node_modules/**
 
     - step:
         name: Lint
