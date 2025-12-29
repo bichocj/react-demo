@@ -45,13 +45,21 @@ pipelines:
   default:
     - step: *install
     - parallel:
-          - step: *lint    
-
+          - step: *lint
+          - step:
+              name: Test
+              caches:
+                - yarn
+              script:
+                - corepack enable
+                - yarn install --frozen-lockfile
+                - CI=true yarn test
     
     - step:
         name: Security scan
         script:
           - echo "Your security scan goes here..."
+    
 
     - step:
         name: Deployment to Staging
