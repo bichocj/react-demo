@@ -41,19 +41,20 @@ definitions:
         script:
           - yarn lint
 
+    - step: &unit-tests
+        name: Unit Tests
+        artifacts:
+          - coverage/lcov.info
+          - reports/*
+        script:
+          - CI=true yarn test --coverage --maxWorkers 2
+
 pipelines:
   default:
     - step: *install
     - parallel:
           - step: *lint
-          - step:
-              name: Test
-              caches:
-                - yarn
-              script:
-                - corepack enable
-                - yarn install --frozen-lockfile
-                - CI=true yarn test
+          - step: *unit-tests          
     
     - step:
         name: Security scan
