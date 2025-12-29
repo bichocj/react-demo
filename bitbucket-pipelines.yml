@@ -65,8 +65,10 @@ pipelines:
     - step:
         name: Deployment to Staging
         deployment: staging
+        trigger: manual
         script:
-          - echo "Your deployment to staging script goes here..."
+          - export REACT_APP_ENV=staging
+          - yarn sandbox
 
     - step:
         name: Deployment to Production
