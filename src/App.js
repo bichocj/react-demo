@@ -18,8 +18,14 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React with bicho! - {appServer} - {appEnv}
+          Learn React with bicho!
         </a>
+        <pre>
+          {appEnv}
+        </pre>        
+        <pre>
+          {appServer}
+        </pre>
       </header>
     </div>
   );
