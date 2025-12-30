@@ -8,7 +8,7 @@ primary_region = 'iad'
 
 [build]
   [build.args]
-    REACT_APP_SERVER = "${REACT_APP_SERVER}"
+    REACT_APP_SERVER = "${REACT_APP_SERVERaa}"
     REACT_APP_ENV = "${REACT_APP_ENV}"
 
 [http_service]
