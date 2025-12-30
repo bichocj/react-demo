@@ -60,7 +60,7 @@ jobs:
       - uses: superfly/flyctl-actions/setup-flyctl@v1
 
       - name: Deploy to Fly (production)
-        run: flyctl deploy --no-cache
+        run: flyctl deploy --no-cache --build-arg REACT_APP_SERVER=$REACT_APP_SERVER
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
 
