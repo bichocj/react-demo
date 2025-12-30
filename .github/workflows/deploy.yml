@@ -60,9 +60,7 @@ jobs:
       - uses: superfly/flyctl-actions/setup-flyctl@v1
 
       - name: Deploy to Fly (production)
-        run: flyctl deploy --remote-only
+        run: flyctl deploy --remote-only --no-cache
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
-          REACT_APP_SERVER: ${{ secrets.REACT_APP_SERVER }}
-          REACT_APP_ENV: ${{ secrets.REACT_APP_ENV }}
 
